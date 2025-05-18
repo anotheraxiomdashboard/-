@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orion Drift Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="/assets/orion_drift_o_white.B153DwTj.ico">
+  
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">
+      <img src="/assets/images/orion_drift_o_white.B153DwTj.webp" alt="Orion Drift Logo">
+    </div>
+  </div>
+
+  <div class="main-content">
+
+    <button class="scrap-button">Open Scrap Run</button>
+    <button class="scrap-button">Extend time SR</button>
+    <button class="scrap-button">Toggle Team Tackle</button>
+     <br>
+    <br>
+    <button class="scrap-button">Activate Floor Is Lava</button>
+    <button class="scrap-button">Toggle Team Tackle</button>
+    <button class="scrap-button">Close Door</button>
+    <button class="scrap-button">Deactivate Floor Is Lava</button>
+    <br>
+    <br>
+    <button class="scrap-button" onclick="toggleNameInput()">Give Pattern</button>
+    <button class="scrap-button" onclick="toggleNameInput()">Kick Player</button>
+    <button class="scrap-button" onclick="toggleNameInput()">Ban Player</button>
+    <div id="nameInputContainer" class="name-input-container">
+      <label for="playerName">Enter player name:</label>
+      <input type="text" id="playerName" placeholder="e.g. ROSIE">
+      <div class="input-buttons">
+        <button class="scrap-button" onclick="submitName()">Confirm</button>
+        <button class="scrap-button cancel-button" onclick="toggleNameInput()">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleNameInput() {
+      const container = document.getElementById('nameInputContainer');
+      const input = document.getElementById('playerName');
+      if (container.style.display === 'none' || container.style.display === '') {
+        container.style.display = 'flex';
+      } else {
+        container.style.display = 'none';
+        input.value = '';
+      }
+    }
+
+    function submitName() {
+      const name = document.getElementById('playerName').value;
+      if (name.trim() !== '') {
+        alert(`Pattern Given to: ${name}`);
+        toggleNameInput();
+      } else {
+        alert('Please enter a valid name.');
+      }
+    }
+  </script>
+
+</body>
+</html>
