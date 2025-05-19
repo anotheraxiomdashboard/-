@@ -2,10 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Orion Drift Dashboard</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/x-icon" href="/assets/orion_drift_o_white.B153DwTj.ico">
-  
+
+  <!-- Apple Home Screen Support -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Orion Drift">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0f0f0f">
+  <meta name="background-color" content="#0f0f0f">
 </head>
 <body>
 
@@ -16,49 +27,112 @@
   </div>
 
   <div class="main-content">
-
     <button class="scrap-button">Open Scrap Run</button>
     <button class="scrap-button">Extend time SR</button>
     <button class="scrap-button">Toggle Team Tackle</button>
-
+    <br><br>
     <button class="scrap-button">Activate Floor Is Lava</button>
     <button class="scrap-button">Toggle Team Tackle</button>
     <button class="scrap-button">Close Door</button>
     <button class="scrap-button">Deactivate Floor Is Lava</button>
+    <br><br>
 
-    <button class="scrap-button" onclick="toggleNameInput()">Give Pattern</button>
+    <!-- Moderator Tools -->
+    <button class="scrap-button" onclick="showNameInput('kick')">Kick Player</button>
+    <button class="scrap-button" onclick="showNameInput('ban')">Ban Player</button>
+    <button class="scrap-button" onclick="showNameInput('pattern')">Give Pattern</button>
+    <button class="scrap-button" onclick="showNameInput('mute')">Mute Player</button>
+    <button class="scrap-button" onclick="showNameInput('unmute')">Unmute Player</button>
+    <button class="scrap-button" onclick="showNameInput('freeze')">Freeze Player</button>
+    <button class="scrap-button" onclick="showNameInput('assignRole')">Assign Role</button>
+    <button class="scrap-button" onclick="showNameInput('logAction')">Log Action</button>
 
+    <!-- Input Panel -->
     <div id="nameInputContainer" class="name-input-container">
       <label for="playerName">Enter player name:</label>
       <input type="text" id="playerName" placeholder="e.g. ROSIE">
+
+      <div id="roleDropdown" style="display: none;">
+        <label for="playerRole">Select Role:</label>
+        <select id="playerRole">
+          <option value="moderator">Moderator</option>
+          <option value="spectator">Spectator</option>
+          <option value="player">Player</option>
+          <option value="banned">Banned</option>
+        </select>
+      </div>
+
       <div class="input-buttons">
         <button class="scrap-button" onclick="submitName()">Confirm</button>
         <button class="scrap-button cancel-button" onclick="toggleNameInput()">Cancel</button>
       </div>
     </div>
-
   </div>
 
   <script>
+    let currentAction = '';
+
     function toggleNameInput() {
       const container = document.getElementById('nameInputContainer');
       const input = document.getElementById('playerName');
+      const roleDropdown = document.getElementById('roleDropdown');
+
       if (container.style.display === 'none' || container.style.display === '') {
         container.style.display = 'flex';
       } else {
         container.style.display = 'none';
         input.value = '';
+        currentAction = '';
+        roleDropdown.style.display = 'none';
       }
     }
 
+    function showNameInput(action) {
+      currentAction = action;
+      const roleDropdown = document.getElementById('roleDropdown');
+      roleDropdown.style.display = (action === 'assignRole') ? 'block' : 'none';
+      toggleNameInput();
+    }
+
     function submitName() {
-      const name = document.getElementById('playerName').value;
-      if (name.trim() !== '') {
-        alert(`Pattern Given to: ${name}`);
-        toggleNameInput();
-      } else {
+      const name = document.getElementById('playerName').value.trim();
+      const role = document.getElementById('playerRole')?.value;
+
+      if (!name) {
         alert('Please enter a valid name.');
+        return;
       }
+
+      switch (currentAction) {
+        case 'kick':
+          alert(`Player kicked: ${name}`);
+          break;
+        case 'ban':
+          alert(`Player banned: ${name}`);
+          break;
+        case 'mute':
+          alert(`Player muted: ${name}`);
+          break;
+        case 'unmute':
+          alert(`Player unmuted: ${name}`);
+          break;
+        case 'freeze':
+          alert(`Player frozen: ${name}`);
+          break;
+        case 'pattern':
+          alert(`Pattern given to: ${name}`);
+          break;
+        case 'assignRole':
+          alert(`Assigned role "${role}" to: ${name}`);
+          break;
+        case 'logAction':
+          alert(`Moderator note logged for: ${name}`);
+          break;
+        default:
+          alert(`Action completed for: ${name}`);
+      }
+
+      toggleNameInput();
     }
   </script>
 
