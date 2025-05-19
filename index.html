@@ -5,6 +5,7 @@
   <title>Orion Drift Dashboard</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/x-icon" href="/assets/orion_drift_o_white.B153DwTj.ico">
+  
 </head>
 <body>
 
@@ -15,28 +16,18 @@
   </div>
 
   <div class="main-content">
+
     <button class="scrap-button">Open Scrap Run</button>
-
-    <!-- Extend Time Button and Popup -->
-    <button class="scrap-button" onclick="toggleSlider()">Extend time SR</button>
-    <div id="sliderPopup" class="slider-popup">
-      <label for="timeSlider">Select time to extend (seconds):</label>
-      <input type="range" id="timeSlider" min="5" max="60" value="30" step="5" oninput="updateSliderValue()">
-      <span id="sliderValue">30s</span>
-      <div class="input-buttons">
-        <button class="scrap-button" onclick="submitSlider()">Confirm</button>
-        <button class="scrap-button cancel-button" onclick="toggleSlider()">Cancel</button>
-      </div>
-    </div>
-
+    <button class="scrap-button">Extend time SR</button>
     <button class="scrap-button">Toggle Team Tackle</button>
+
     <button class="scrap-button">Activate Floor Is Lava</button>
     <button class="scrap-button">Toggle Team Tackle</button>
     <button class="scrap-button">Close Door</button>
     <button class="scrap-button">Deactivate Floor Is Lava</button>
 
-    <!-- Give Pattern -->
     <button class="scrap-button" onclick="toggleNameInput()">Give Pattern</button>
+
     <div id="nameInputContainer" class="name-input-container">
       <label for="playerName">Enter player name:</label>
       <input type="text" id="playerName" placeholder="e.g. ROSIE">
@@ -45,6 +36,7 @@
         <button class="scrap-button cancel-button" onclick="toggleNameInput()">Cancel</button>
       </div>
     </div>
+
   </div>
 
   <script>
@@ -67,23 +59,6 @@
       } else {
         alert('Please enter a valid name.');
       }
-    }
-
-    function toggleSlider() {
-      const popup = document.getElementById('sliderPopup');
-      popup.style.display = (popup.style.display === 'flex') ? 'none' : 'flex';
-    }
-
-    function updateSliderValue() {
-      const slider = document.getElementById('timeSlider');
-      const display = document.getElementById('sliderValue');
-      display.textContent = slider.value + 's';
-    }
-
-    function submitSlider() {
-      const seconds = document.getElementById('timeSlider').value;
-      alert(`Extended Scrap Run by ${seconds} seconds.`);
-      toggleSlider();
     }
   </script>
 
