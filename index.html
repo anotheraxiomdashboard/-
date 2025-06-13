@@ -1,41 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Orion Drift Admin Dashboard</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="assets/orion_drift_o_white.B153DwTj.ico">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="assets/orion_drift_o_white.B153DwTj.ico"/>
 
   <!-- Apple Home Screen Support -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Orion Drift">
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="Orion Drift"/>
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png"/>
 
   <!-- Web App Manifest -->
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#0f0f0f">
-  <meta name="background-color" content="#0f0f0f">
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="theme-color" content="#0f0f0f"/>
+  <meta name="background-color" content="#0f0f0f"/>
 </head>
-<body>
 
+<body>
   <div class="navbar">
     <div class="logo">
       <img src="assets/images/orion_drift_o_white.B153DwTj.webp" alt="Orion Drift Logo">
     </div>
+    <div class="dropdown-container">
+      <select id="locationSelect">
+        <option value="clubhouse">Clubhouse</option>
+        <option value="clubhouse">Clubhouse 1</option>
+        <option value="clubhouse">Clubhouse 2</option>
+        <option value="clubhouse">Clubhouse 3</option>
+        <option value="clubhouse">Clubhouse 4</option>
+        <option value="clubhouse">Clubhouse 5</option>
+        <option value="clubhouse">Clubhouse 6</option>
+        <option value="clubhouse">Clubhouse 7</option>
+        <option value="clubhouse">Clubhouse 8</option>
+        <option value="clubhouse">Clubhouse 9</option>
+        <option value="clubhouse">Clubhouse 10</option>
+        <option value="clubhouse">Clubhouse 11</option>
+        <option value="clubhouse">Clubhouse 12</option>
+        <option value="clubhouse">Clubhouse 13</option>
+        <option value="clubhouse">Clubhouse 14</option>
+        <option value="clubhouse">Clubhouse 15</option>
+        <option value="clubhouse">Clubhouse 16</option>
+        <option value="clubhouse">Clubhouse 17</option>
+        <option value="clubhouse">Clubhouse 18</option>
+        <option value="clubhouse">Clubhouse 19</option>
+        <option value="clubhouse">Clubhouse 20</option>
+        <option value="clubhouse">Clubhouse 21</option>
+        <option value="clubhouse">Clubhouse 22</option>
+        <option value="clubhouse">Clubhouse 23</option>
+        <option value="clubhouse">Clubhouse 24</option>
+        <option value="clubhouse">Clubhouse 25</option>
+        <option value="clubhouse">Clubhouse Staff Only</option>
+      </select>
+       <select id="locationSelect">
+        <option value="clubhouse">KKINGVRRonTT</option>
+        <option value="clubhouse">Rilo_</option>
+        <option value="clubhouse">Ducky</option>
+        <option value="clubhouse">ProdigyPro11</option>
+        <option value="clubhouse">Distorted</option>
+        <option value="clubhouse">ender</option>
+   
+      </select>
+    </div>
   </div>
 
   <div class="main-content">
-    <button class="scrap-button">Open Scrap Run</button>
+    <button class="scrap-button">Open ScrapRun</button>
     <button class="scrap-button">Extend time SR</button>
     <button class="scrap-button">Toggle Team Tackle</button>
+    <button class="scrap-button">Close Scraprun</button>
     <br><br>
     <button class="scrap-button">Activate Floor Is Lava</button>
     <button class="scrap-button">Toggle Team Tackle</button>
     <button class="scrap-button">Close Door</button>
     <button class="scrap-button">Deactivate Floor Is Lava</button>
     <br><br>
+    <button class="scrap-button">Activate Sharks and Minnows</button>
+    <button class="scrap-button">Toggle Team Tackle</button>
+    <button class="scrap-button">Close Door</button>
+    <button class="scrap-button">Deactivate Sharks and Minnows</button>
+    <br><br>
+    <button class="scrap-button">Activate Wacky Ball Physics</button>
+    <button class="scrap-button">Extra Wacky Mode</button>
+    <button class="scrap-button">Super Duper Wacky Mode</button>
+    <button class="scrap-button">Deactivate Wacky Ball Physics</button>
+    <br><br><br><br>
+    
+    
+
 
     <!-- Moderator Tools -->
     <button class="scrap-button" onclick="showNameInput('kick')">Kick Player</button>
@@ -67,6 +121,15 @@
         <button class="scrap-button cancel-button" onclick="toggleNameInput()">Cancel</button>
       </div>
     </div>
+  </div>
+
+  <div id="login-container">
+    <img src="assets/images/orion_drift_logo_768.CnEHpFJK.webp" alt="Orion Drift Logo">
+    <h2>Orion Drift Admin Dashboard</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="checkLogin()">Login</button>
+    <p id="error-msg" style="color: red;"></p>
   </div>
 
   <script>
@@ -134,46 +197,16 @@
 
       toggleNameInput();
     }
-  </script>
 
-
-<style>
-  #login-container {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(135deg, #ffffff, #000000);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-  #login-container input {
-    margin: 5px;
-    padding: 8px;
-    font-size: 16px;
-  }
-</style>
-<div id="login-container">
-      <img src="assets/images/orion_drift_logo_768.CnEHpFJK.webp" alt="Orion Drift Logo">
-  <h2>Orion Drift Admin Dashboard</h2>
-  <input type="text" id="username" placeholder="Username">
-  <input type="password" id="password" placeholder="Password">
-  <button onclick="checkLogin()">Login</button>
-  <p id="error-msg" style="color: red;"></p>
-</div>
-<script>
-  function checkLogin() {
-    const user = document.getElementById('username').value;
-    const pass = document.getElementById('password').value;
-    if ((user === 'Rilo' && pass === 'infamouspug') || (user === 'kinggy' && pass === 'erk84g')) {
-      document.getElementById('login-container').style.display = 'none';
-    } else {
-      document.getElementById('error-msg').textContent = 'Invalid username or password!';
+    function checkLogin() {
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      if ((user === 'Rilo' && pass === 'infamouspug') || (user === 'kinggy' && pass === 'erk84g')) {
+        document.getElementById('login-container').style.display = 'none';
+      } else {
+        document.getElementById('error-msg').textContent = 'Invalid username or password!';
+      }
     }
-  }
-</script>
-
+  </script>
 </body>
 </html>
