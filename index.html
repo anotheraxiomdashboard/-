@@ -164,6 +164,21 @@
       }
     }
 
+    function togglesizeInput() {
+      const container = document.getElementById('sizeInputContainer');
+      const input = document.getElementById('playerName');
+      const roleDropdown = document.getElementById('roleDropdown');
+
+      if (container.style.display === 'none' || container.style.display === '') {
+        container.style.display = 'flex';
+      } else {
+        container.style.display = 'none';
+        input.value = '';
+        currentAction = '';
+        roleDropdown.style.display = 'none';
+      }
+    }
+
     function showNameInput(action) {
       currentAction = action;
       const roleDropdown = document.getElementById('roleDropdown');
@@ -175,7 +190,7 @@
       currentAction = action;
       const roleDropdown = document.getElementById('roleDropdown');
       roleDropdown.style.display = (action === 'assignRole') ? 'block' : 'none';
-      toggleNameInput();
+      ttoggleNameInput();
     }
 
     function submitName() {
