@@ -55,6 +55,15 @@
         <option value="clubhouse">Clubhouse Staff Only</option>
         <option value="clubhouse">DevsVDrifters</option>
         <option value="clubhouse">CreatorsVDrifters</option>
+        <option value="clubhouse">Oriondrifthunt</option>
+        <option value="clubhouse">KINGS_Station1</option>
+        <option value="clubhouse">1toast_Station</option>
+        <option value="clubhouse">Rookie_Admin_Only</option>
+        <option value="clubhouse">Event_Station</option>
+        <option value="clubhouse">Event_Station</option>
+        <option value="clubhouse">Event_Station</option>
+        <option value="clubhouse">Event_Station</option>
+        <option value="clubhouse">Orion_Drift_Staff_Only</option>
       </select>
       
     </div>
@@ -80,7 +89,17 @@
     <button class="scrap-button">Extra Wacky Mode</button>
     <button class="scrap-button">Super Duper Wacky Mode</button>
     <button class="scrap-button">Deactivate Wacky Ball Physics</button>
-    <br><br><br><br>
+    <br><br>
+    <button class="scrap-button">Open Server</button>
+    <button class="scrap-button">Turn On Allow List</button>
+    <button class="scrap-button">Make Server Size 10</button>
+    <button class="scrap-button">Make Server Size 20</button>
+    <button class="scrap-button">Make Server Size 30</button>
+    <button class="scrap-button">Make Server Size 40</button>
+    <button class="scrap-button">Make Server Size 50</button>
+    <button class="scrap-button" onclick="showNameInput('Makeserverbig')">Make Server Size</button>
+    <button class="scrap-button">Close Scraprun</button>
+    <br><br>
     
     
 
@@ -188,6 +207,10 @@
           break;
         default:
           alert(`Action completed for: ${name}`);
+          break;
+        case 'Makeserverbig':
+          alert(`Made Server fit ${name} People`);
+          break;
       }
 
       toggleNameInput();
