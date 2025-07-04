@@ -92,12 +92,7 @@
     <br><br>
     <button class="scrap-button">Open Server</button>
     <button class="scrap-button">Turn On Allow List</button>
-    <button class="scrap-button">Make Server Size 10</button>
-    <button class="scrap-button">Make Server Size 20</button>
-    <button class="scrap-button">Make Server Size 30</button>
-    <button class="scrap-button">Make Server Size 40</button>
-    <button class="scrap-button">Make Server Size 50</button>
-    <button class="scrap-button" onclick="showNameInput('Makeserverbig')">Make Server Size</button>
+    <button class="scrap-button" onclick="sshowNameInput('Makeserverbig')">Make Server Size</button>
     <button class="scrap-button">Close Scraprun</button>
     <br><br>
     
@@ -119,6 +114,11 @@
       <label for="playerName">Enter player name:</label>
       <input type="text" id="playerName" placeholder="e.g. ROSIE">
 
+
+    <div id="sizeInputContainer" class="name-input-container">
+      <label for="playerName">Enter Server Size:</label>
+      <input type="text" id="playerName" placeholder="e.g. 30">
+      
       <div id="roleDropdown" style="display: none;">
         <label for="playerRole">Select Role:</label>
         <select id="playerRole">
@@ -165,6 +165,13 @@
     }
 
     function showNameInput(action) {
+      currentAction = action;
+      const roleDropdown = document.getElementById('roleDropdown');
+      roleDropdown.style.display = (action === 'assignRole') ? 'block' : 'none';
+      toggleNameInput();
+    }
+    
+    function sshowNameInput(action) {
       currentAction = action;
       const roleDropdown = document.getElementById('roleDropdown');
       roleDropdown.style.display = (action === 'assignRole') ? 'block' : 'none';
