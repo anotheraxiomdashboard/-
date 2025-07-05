@@ -73,6 +73,16 @@
     <button class="scrap-button">Turn On Allow List</button>
     <button class="scrap-button" onclick="toggleSizeInput()">Make Server Size</button>
     <button class="scrap-button">Close Scraprun</button>
+
+    <!-- Server Size Input -->
+    <div id="serverSizeContainer" class="name-input-container" style="display: none;">
+      <label for="serverSizeInput">Enter Server Size:</label>
+      <input type="number" id="serverSizeInput" placeholder="e.g. 30" min="1">
+      <div class="input-buttons">
+        <button class="scrap-button" onclick="submitServerSize()">Confirm</button>
+        <button class="scrap-button cancel-button" onclick="toggleSizeInput()">Cancel</button>
+      </div>
+    </div>
     
     <br><br>
     <br><br>
@@ -104,17 +114,6 @@
     <button class="scrap-button">Deactivate Wacky Ball Physics</button>
     <br><br>
 
-  
-    <!-- Server Size Input -->
-    <div id="serverSizeContainer" class="name-input-container" style="display: none;">
-      <label for="serverSizeInput">Enter Server Size:</label>
-      <input type="number" id="serverSizeInput" placeholder="e.g. 30" min="1">
-      <div class="input-buttons">
-        <button class="scrap-button" onclick="submitServerSize()">Confirm</button>
-        <button class="scrap-button cancel-button" onclick="toggleSizeInput()">Cancel</button>
-      </div>
-    </div>
-    <br><br>
 
     <!-- Moderator Tools -->
     
