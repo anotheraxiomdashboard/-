@@ -12,11 +12,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <meta name="apple-mobile-web-app-title" content="Orion Drift"/>
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png"/>
-
-  <!-- Web App Manifest -->
   <link rel="manifest" href="/manifest.json"/>
   <meta name="theme-color" content="#0f0f0f"/>
-  <meta name="background-color" content="#0f0f0f"/>
 </head>
 
 <body>
@@ -65,41 +62,58 @@
         <option value="clubhouse">Event_Station</option>
         <option value="clubhouse">Orion_Drift_Staff_Only</option>
       </select>
-      
     </div>
   </div>
 
   <div class="main-content">
+    <!-- Scraprun Controls -->
     <button class="scrap-button">Open ScrapRun</button>
     <button class="scrap-button">Extend time SR</button>
     <button class="scrap-button">Toggle Team Tackle</button>
     <button class="scrap-button">Close Scraprun</button>
     <br><br>
+
+    <!-- Floor is Lava -->
     <button class="scrap-button">Activate Floor Is Lava</button>
     <button class="scrap-button">Toggle Team Tackle</button>
     <button class="scrap-button">Close Door</button>
     <button class="scrap-button">Deactivate Floor Is Lava</button>
     <br><br>
+
+    <!-- Sharks and Minnows -->
     <button class="scrap-button">Activate Sharks and Minnows</button>
     <button class="scrap-button">Toggle Team Tackle</button>
     <button class="scrap-button">Close Door</button>
     <button class="scrap-button">Deactivate Sharks and Minnows</button>
     <br><br>
+
+    <!-- Wacky Ball Physics -->
     <button class="scrap-button">Activate Wacky Ball Physics</button>
     <button class="scrap-button">Extra Wacky Mode</button>
     <button class="scrap-button">Super Duper Wacky Mode</button>
     <button class="scrap-button">Deactivate Wacky Ball Physics</button>
     <br><br>
+
+    <!-- Server Settings -->
+    <h2>Server Settings</h2>
     <button class="scrap-button">Open Server</button>
     <button class="scrap-button">Turn On Allow List</button>
-    <button class="scrap-button" onclick="sshowNameInput('Makeserverbig')">Make Server Size</button>
+    <button class="scrap-button" onclick="toggleSizeInput()">Make Server Size</button>
     <button class="scrap-button">Close Scraprun</button>
-    <br><br>
-    
-    
 
+    <!-- Server Size Input -->
+    <div id="serverSizeContainer" class="name-input-container" style="display: none;">
+      <label for="serverSizeInput">Enter Server Size:</label>
+      <input type="number" id="serverSizeInput" placeholder="e.g. 30" min="1">
+      <div class="input-buttons">
+        <button class="scrap-button" onclick="submitServerSize()">Confirm</button>
+        <button class="scrap-button cancel-button" onclick="toggleSizeInput()">Cancel</button>
+      </div>
+    </div>
+    <br><br>
 
     <!-- Moderator Tools -->
+    
     <button class="scrap-button" onclick="showNameInput('kick')">Kick Player</button>
     <button class="scrap-button" onclick="showNameInput('ban')">Ban Player</button>
     <button class="scrap-button" onclick="showNameInput('pattern')">Give Pattern</button>
@@ -110,15 +124,10 @@
     <button class="scrap-button" onclick="showNameInput('logAction')">Log Action</button>
 
     <!-- Input Panel -->
-    <div id="nameInputContainer" class="name-input-container">
+    <div id="nameInputContainer" class="name-input-container" style="display: none;">
       <label for="playerName">Enter player name:</label>
       <input type="text" id="playerName" placeholder="e.g. ROSIE">
 
-
-    <div id="sizeInputContainer" class="name-input-container">
-      <label for="playerName">Enter Server Size:</label>
-      <input type="text" id="playerName" placeholder="e.g. 30">
-      
       <div id="roleDropdown" style="display: none;">
         <label for="playerRole">Select Role:</label>
         <select id="playerRole">
@@ -135,8 +144,8 @@
       </div>
     </div>
   </div>
-</body>
 
+  <!-- Login Container -->
   <div id="login-container">
     <img src="assets/images/orion_drift_logo_768.CnEHpFJK.webp" alt="Orion Drift Logo">
     <h2>Orion Drift Admin Dashboard</h2>
@@ -146,6 +155,7 @@
     <p id="error-msg" style="color: red;"></p>
   </div>
 
+  <!-- Script -->
   <script>
     let currentAction = '';
 
@@ -164,18 +174,15 @@
       }
     }
 
-    function togglesizeInput() {
-      const container = document.getElementById('sizeInputContainer');
-      const input = document.getElementById('playerName');
-      const roleDropdown = document.getElementById('roleDropdown');
+    function toggleSizeInput() {
+      const container = document.getElementById('serverSizeContainer');
+      const input = document.getElementById('serverSizeInput');
 
       if (container.style.display === 'none' || container.style.display === '') {
         container.style.display = 'flex';
       } else {
         container.style.display = 'none';
         input.value = '';
-        currentAction = '';
-        roleDropdown.style.display = 'none';
       }
     }
 
@@ -184,13 +191,6 @@
       const roleDropdown = document.getElementById('roleDropdown');
       roleDropdown.style.display = (action === 'assignRole') ? 'block' : 'none';
       toggleNameInput();
-    }
-    
-    function sshowNameInput(action) {
-      currentAction = action;
-      const roleDropdown = document.getElementById('roleDropdown');
-      roleDropdown.style.display = (action === 'assignRole') ? 'block' : 'none';
-      ttoggleNameInput();
     }
 
     function submitName() {
@@ -230,12 +230,19 @@
         default:
           alert(`Action completed for: ${name}`);
           break;
-        case 'Makeserverbig':
-          alert(`Made Server fit ${name} People`);
-          break;
       }
 
       toggleNameInput();
+    }
+
+    function submitServerSize() {
+      const size = document.getElementById('serverSizeInput').value.trim();
+      if (!size || isNaN(size) || size <= 0) {
+        alert('Please enter a valid server size.');
+        return;
+      }
+      alert(`Server size set to ${size} players.`);
+      toggleSizeInput();
     }
 
     function checkLogin() {
@@ -248,5 +255,5 @@
       }
     }
   </script>
-
+</body>
 </html>
